@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,32 +20,40 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isMenuOpen && !target.closest('.mobile-menu-container')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/90 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
-        : 'bg-transparent'
+        ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
+        : 'bg-white lg:bg-transparent'
     }`}>
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="text-2xl group-hover:scale-110 transition-transform duration-300">🔧</div>
-              <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-500/30 transition-all duration-300"></div>
+              <Image 
+                src="/logo.png"
+                alt="Seka Altyapı Logo"
+                width={200}
+                height={60}
+                className="h-8 w-auto sm:h-10 md:h-12 lg:h-14 group-hover:scale-105 transition-transform duration-300"
+                priority
+              />
             </div>
-            <div>
-              <h1 className={`text-xl font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-white'
-              }`}>
-                Tesisat Pro
-              </h1>
-              <p className={`text-xs transition-colors duration-300 ${
-                isScrolled ? 'text-gray-600' : 'text-white/80'
-              }`}>
-                Profesyonel Tesisat Hizmetleri
-              </p>
-            </div>
+            
           </Link>
 
           {/* Desktop Navigation */}
@@ -84,7 +93,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Link href="/iletisim">
-              <button className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:scale-105 overflow-hidden ${
+              <button className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:scale-105 overflow-hidden touch-button ${
                 isScrolled 
                   ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl' 
                   : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border border-white/30'
@@ -97,73 +106,51 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
-              isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'
-            }`}
+            className={`lg:hidden p-2 rounded-lg transition-all duration-300 touch-button hover:bg-gray-100`}
             onClick={toggleMenu}
+            aria-label="Toggle mobile menu"
           >
             <div className="w-5 h-5 flex flex-col justify-center items-center">
-              <span className={`block w-4 h-0.5 transition-all duration-300 ${
-                isScrolled ? 'bg-gray-600' : 'bg-white'
-              } ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 ${
-                isScrolled ? 'bg-gray-600' : 'bg-white'
-              } ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 ${
-                isScrolled ? 'bg-gray-600' : 'bg-white'
-              } ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              <span className={`block w-4 h-0.5 transition-all duration-300 bg-gray-600 ${
+                isMenuOpen ? 'rotate-45 translate-y-1' : ''
+              }`}></span>
+              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 bg-gray-600 ${
+                isMenuOpen ? 'opacity-0' : ''
+              }`}></span>
+              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 bg-gray-600 ${
+                isMenuOpen ? '-rotate-45 -translate-y-1' : ''
+              }`}></span>
             </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden ${
-          isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        <div className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden mobile-menu-container bg-white ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <nav className={`py-4 space-y-2 border-t ${
             isScrolled ? 'border-gray-200' : 'border-white/20'
           }`}>
-            <Link href="/" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-              isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-            }`}>
+            <Link href="/" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
               Ana Sayfa
             </Link>
-                               <Link href="/hizmetlerimiz" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                     isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-                   }`}>
-                     Hizmetlerimiz
-                   </Link>
-                   <Link href="/galeri" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                     isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-                   }`}>
-                     Galeri
-                   </Link>
-                   <Link href="/haberler" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                     isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-                   }`}>
-                     Haberler
-                   </Link>
-                   <Link href="/hakkimizda" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                     isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-                   }`}>
-                     Hakkımızda
-                   </Link>
-            <Link href="/iletisim" className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-              isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
-            }`}>
+            <Link href="/hizmetlerimiz" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
+              Hizmetlerimiz
+            </Link>
+            <Link href="/galeri" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
+              Galeri
+            </Link>
+            <Link href="/haberler" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
+              Haberler
+            </Link>
+            <Link href="/hakkimizda" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
+              Hakkımızda
+            </Link>
+            <Link href="/iletisim" className={`block px-3 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-button text-gray-700 hover:bg-gray-100`} onClick={() => setIsMenuOpen(false)}>
               İletişim
             </Link>
-            <div className="pt-2">
-              <Link href="/iletisim">
-                <button className={`w-full px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                  isScrolled 
-                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border border-white/30'
-                }`}>
-                  Hemen Ara
-                </button>
-              </Link>
-            </div>
+            
+            
           </nav>
         </div>
       </div>

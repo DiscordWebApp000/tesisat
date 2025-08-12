@@ -1,0 +1,176 @@
+{
+  "haberler": [
+    {
+      "id": 1,
+      "slug": "su-tesisati-bakimi-hakkinda",
+      "title": "Su Tesisatı Bakımı Hakkında Bilmeniz Gerekenler",
+      "excerpt": "Su tesisatı bakımı, evinizin sağlığı için kritik öneme sahiptir. Düzenli bakım ile su kaçaklarını önleyebilir ve tesisat ömrünü uzatabilirsiniz.",
+      "content": "<p>Su tesisatı bakımı, evinizin sağlığı için kritik öneme sahiptir. Düzenli bakım ile su kaçaklarını önleyebilir ve tesisat ömrünü uzatabilirsiniz.</p><h2>Düzenli Bakımın Faydaları</h2><p>Su tesisatınızın düzenli olarak kontrol edilmesi, birçok fayda sağlar:</p><ul><li>Su kaçaklarının erken tespiti</li><li>Tesisat ömrünün uzatılması</li><li>Su tasarrufu</li><li>Beklenmeyen arıza maliyetlerinin önlenmesi</li></ul><h2>Hangi Sıklıkla Bakım Yapılmalı?</h2><p>Uzmanlar, su tesisatı bakımının yılda en az bir kez yapılmasını önerir. Özellikle:</p><ul><li>Kış öncesi genel kontrol</li><li>Su basıncı testi</li><li>Gider tıkanıklığı kontrolü</li><li>Musluk ve batarya kontrolü</li></ul><h2>Profesyonel Hizmet Neden Önemli?</h2><p>Su tesisatı işleri, profesyonel bilgi ve deneyim gerektirir. Uzman ekibimiz:</p><ul><li>Modern cihazlarla detaylı inceleme yapar</li><li>Gizli kaçakları tespit eder</li><li>Uzun vadeli çözümler sunar</li><li>Garantili hizmet verir</li></ul><p>Su tesisatı bakımı hakkında daha detaylı bilgi için bizimle iletişime geçebilirsiniz.</p>",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "date": "15 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Su Tesisatı",
+      "categoryId": "maintenance",
+      "readTime": "5 dk okuma",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "slug": "kombi-bakimi-onemli",
+      "title": "Kombi Bakımı Neden Bu Kadar Önemli?",
+      "excerpt": "Kombi bakımı, sadece cihazın ömrünü uzatmakla kalmaz, aynı zamanda enerji tasarrufu da sağlar.",
+      "content": "<p>Kombi bakımı, sadece cihazın ömrünü uzatmakla kalmaz, aynı zamanda enerji tasarrufu da sağlar. Düzenli bakım ile kombinizin performansını artırabilir ve güvenliğini sağlayabilirsiniz.</p><h2>Kombi Bakımının Faydaları</h2><ul><li>Enerji verimliliği artar</li><li>Cihaz ömrü uzar</li><li>Güvenlik riskleri azalır</li><li>Arıza maliyetleri düşer</li></ul><h2>Hangi Sıklıkla Bakım Yapılmalı?</h2><p>Kombi bakımı yılda en az bir kez yapılmalıdır. Özellikle kış öncesi bakım çok önemlidir.</p><h2>Bakım Sürecinde Neler Yapılır?</h2><ul><li>Filtre temizliği</li><li>Basınç kontrolü</li><li>Gaz ayarı</li><li>Genel performans testi</li></ul>",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "date": "12 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Isıtma Sistemleri",
+      "categoryId": "maintenance",
+      "readTime": "4 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "slug": "acil-tesisat-servisi",
+      "title": "7/24 Acil Tesisat Servisi Hizmetinizde",
+      "excerpt": "Acil tesisat sorunlarınızda 7/24 yanınızdayız. Su kaçağı, gider tıkanıklığı ve diğer acil durumlar için hemen arayın.",
+      "content": "<p>Acil tesisat sorunlarınızda 7/24 yanınızdayız. Su kaçağı, gider tıkanıklığı ve diğer acil durumlar için hemen arayın.</p><h2>Hangi Durumlarda Acil Servis Gerekir?</h2><ul><li>Su kaçağı</li><li>Gider tıkanıklığı</li><li>Kombi arızası</li><li>Su kesintisi</li><li>Isıtma sistemi arızası</li></ul><h2>Neden 7/24 Hizmet?</h2><p>Tesisat sorunları genellikle en beklenmedik zamanlarda ortaya çıkar. Bu nedenle 7/24 hizmet veriyoruz.</p><h2>Acil Durumlarda Ne Yapmalısınız?</h2><ul><li>Ana vanayı kapatın</li><li>Elektrik şalterini indirin</li><li>Bizi hemen arayın</li><li>Güvenli bir yerde bekleyin</li></ul>",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "date": "10 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Acil Servis",
+      "categoryId": "emergency",
+      "readTime": "3 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "slug": "kis-aylarinda-tesisat-bakimi",
+      "title": "Kış Aylarında Tesisat Bakımı Nasıl Yapılır?",
+      "excerpt": "Soğuk havalarda tesisatınızı donmaya karşı korumak için almanız gereken önlemler ve yapmanız gereken bakım işlemleri.",
+      "content": "<p>Kış aylarında tesisatınızı donmaya karşı korumak için almanız gereken önlemler ve yapmanız gereken bakım işlemleri hakkında detaylı bilgi.</p><h2>Kış Öncesi Hazırlık</h2><ul><li>Dış boruları yalıtım ile sarın</li><li>Su vanalarını kontrol edin</li><li>Drenaj sistemini temizleyin</li><li>Isıtma sistemini test edin</li></ul><h2>Donma Riski Olan Alanlar</h2><ul><li>Dış duvar boruları</li><li>Çatı katı tesisatı</li><li>Bodrum katı</li><li>Garaj tesisatı</li></ul><h2>Korunma Yöntemleri</h2><p>Boru donmasını önlemek için:</p><ul><li>Termostat ayarlarını kontrol edin</li><li>Su akışını sürekli tutun</li><li>Yalıtım malzemeleri kullanın</li><li>Profesyonel yardım alın</li></ul>",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "8 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Bakım",
+      "categoryId": "maintenance",
+      "readTime": "6 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "slug": "2024-banyo-tasarim-trendleri",
+      "title": "2024 Banyo Tasarım Trendleri",
+      "excerpt": "Bu yıl en popüler banyo tasarım trendleri ve tesisat açısından dikkat edilmesi gereken detaylar.",
+      "content": "<p>2024 yılında banyo tasarımında öne çıkan trendler ve tesisat açısından dikkat edilmesi gereken önemli detaylar.</p><h2>2024 Banyo Trendleri</h2><ul><li>Minimalist tasarım</li><li>Doğal malzemeler</li><li>Akıllı teknoloji entegrasyonu</li><li>Sürdürülebilir çözümler</li></ul><h2>Tesisat Açısından Dikkat Edilecekler</h2><ul><li>Su tasarruflu armatürler</li><li>Gizli tesisat sistemleri</li><li>Akıllı su ölçer</li><li>Yağmur duşu sistemleri</li></ul><h2>Maliyet ve Verimlilik</h2><p>Modern banyo tasarımında maliyet ve verimlilik dengesi çok önemlidir.</p>",
+      "image": "https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "5 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Trendler",
+      "categoryId": "trends",
+      "readTime": "7 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "slug": "su-sayaci-okuma-ve-bakim-rehberi",
+      "title": "Su Sayacı Okuma ve Bakım Rehberi",
+      "excerpt": "Su sayacınızı nasıl okuyacağınız ve düzenli bakımı için yapmanız gerekenler hakkında detaylı bilgiler.",
+      "content": "<p>Su sayacınızı nasıl okuyacağınız ve düzenli bakımı için yapmanız gerekenler hakkında detaylı bilgiler.</p><h2>Su Sayacı Nasıl Okunur?</h2><ul><li>Sayıları soldan sağa okuyun</li><li>Kırmızı rakamları dikkate almayın</li><li>M3 cinsinden ölçüm yapın</li><li>Düzenli olarak kayıt tutun</li></ul><h2>Bakım İpuçları</h2><ul><li>Sayacı temiz tutun</li><li>Düzenli kontrol yapın</li><li>Anormal durumları bildirin</li><li>Profesyonel yardım alın</li></ul><h2>Su Tasarrufu</h2><p>Su sayacı ile su kullanımınızı takip ederek tasarruf yapabilirsiniz.</p>",
+      "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "3 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Bakım",
+      "categoryId": "maintenance",
+      "readTime": "4 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 7,
+      "slug": "akilli-su-olcer-sistemi-kurulumu",
+      "title": "Akıllı Su Ölçer Sistemi Kurulumu",
+      "excerpt": "Yeni nesil akıllı su ölçer sistemlerinin avantajları ve kurulum süreçleri hakkında bilmeniz gerekenler.",
+      "content": "<p>Yeni nesil akıllı su ölçer sistemlerinin avantajları ve kurulum süreçleri hakkında bilmeniz gerekenler.</p><h2>Akıllı Su Ölçer Avantajları</h2><ul><li>Gerçek zamanlı takip</li><li>Su kaçağı tespiti</li><li>Mobil uygulama entegrasyonu</li><li>Otomatik raporlama</li></ul><h2>Kurulum Süreci</h2><ul><li>Mevcut sistem analizi</li><li>Uygun cihaz seçimi</li><li>Profesyonel kurulum</li><li>Test ve kalibrasyon</li></ul><h2>Maliyet ve Fayda</h2><p>Akıllı su ölçer sistemi uzun vadede önemli tasarruf sağlar.</p>",
+      "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "1 Aralık 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Kurulum",
+      "categoryId": "installation",
+      "readTime": "6 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 8,
+      "slug": "gider-tikanikligi-nasil-onlenir",
+      "title": "Gider Tıkanıklığı Nasıl Önlenir?",
+      "excerpt": "Evinizdeki giderlerin tıkanmasını önlemek için alınabilecek basit önlemler ve günlük bakım ipuçları.",
+      "content": "<p>Evinizdeki giderlerin tıkanmasını önlemek için alınabilecek basit önlemler ve günlük bakım ipuçları.</p><h2>Günlük Önlemler</h2><ul><li>Yağ ve gres atmayın</li><li>Büyük parçaları çöpe atın</li><li>Düzenli temizlik yapın</li><li>Su akışını kontrol edin</li></ul><h2>Haftalık Bakım</h2><ul><li>Gider tuzu kullanın</li><li>Karbonat ve sirke karışımı</li><li>Su basıncı testi</li><li>Görsel kontrol</li></ul><h2>Profesyonel Yardım</h2><p>Karmaşık tıkanıklıklarda mutlaka profesyonel yardım alın.</p>",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "28 Kasım 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "İpuçları",
+      "categoryId": "tips",
+      "readTime": "3 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 9,
+      "slug": "cevre-dostu-tesisat-cozumleri",
+      "title": "Çevre Dostu Tesisat Çözümleri",
+      "excerpt": "Sürdürülebilir ve çevre dostu tesisat sistemleri ile hem doğayı koruyun hem de tasarruf edin.",
+      "content": "<p>Sürdürülebilir ve çevre dostu tesisat sistemleri ile hem doğayı koruyun hem de tasarruf edin.</p><h2>Çevre Dostu Sistemler</h2><ul><li>Su tasarruflu armatürler</li><li>Gri su geri dönüşümü</li><li>Yağmur suyu toplama</li><li>Enerji verimli pompalar</li></ul><h2>Çevresel Faydalar</h2><ul><li>Su tasarrufu</li><li>Enerji verimliliği</li><li>Karbon ayak izi azaltma</li><li>Doğal kaynak korunumu</li></ul><h2>Maliyet Avantajları</h2><p>Çevre dostu sistemler uzun vadede önemli tasarruf sağlar.</p>",
+      "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "25 Kasım 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Trendler",
+      "categoryId": "trends",
+      "readTime": "8 dk okuma",
+      "featured": false
+    },
+    {
+      "id": 10,
+      "slug": "yeni-bina-tesisat-kurulumu",
+      "title": "Yeni Bina Tesisat Kurulumu Rehberi",
+      "excerpt": "Yeni inşa edilen binalarda tesisat kurulumu süreçleri, dikkat edilmesi gereken noktalar ve profesyonel hizmet.",
+      "content": "<p>Yeni inşa edilen binalarda tesisat kurulumu süreçleri, dikkat edilmesi gereken noktalar ve profesyonel hizmet hakkında detaylı bilgi.</p><h2>Kurulum Aşamaları</h2><ul><li>Proje tasarımı ve planlama</li><li>Malzeme seçimi</li><li>Profesyonel kurulum</li><li>Test ve kalibrasyon</li></ul><h2>Dikkat Edilecek Noktalar</h2><ul><li>Kaliteli malzeme kullanımı</li><li>Uzman ekip</li><li>Garanti ve servis</li><li>Gelecek ihtiyaçlar</li></ul><h2>Maliyet ve Kalite</h2><p>Doğru tesisat kurulumu uzun vadede önemli tasarruf sağlar.</p>",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "date": "22 Kasım 2024",
+      "author": "Seka Altyapı Ekibi",
+      "category": "Kurulum",
+      "categoryId": "installation",
+      "readTime": "9 dk okuma",
+      "featured": false
+    }
+  ],
+  "kategoriler": [
+    {
+      "id": "all",
+      "name": "Tümü",
+      "count": 10
+    },
+    {
+      "id": "maintenance",
+      "name": "Bakım",
+      "count": 4
+    },
+    {
+      "id": "tips",
+      "name": "İpuçları",
+      "count": 1
+    },
+    {
+      "id": "trends",
+      "name": "Trendler",
+      "count": 2
+    },
+    {
+      "id": "installation",
+      "name": "Kurulum",
+      "count": 2
+    },
+    {
+      "id": "emergency",
+      "name": "Acil Servis",
+      "count": 1
+    }
+  ]
+}

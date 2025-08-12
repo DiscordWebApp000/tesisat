@@ -36,42 +36,42 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="hakkimizda" className="py-20 bg-gray-50/50">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="hakkimizda" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50/50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left side - Image */}
-          <div className="relative">
+          <div className="relative order-2 lg:order-1">
             <Image 
               src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
               alt="Profesyonel Tesisat Ekibi"
               width={1000}
               height={600}
-              className="rounded-xl shadow-lg"
+              className="rounded-xl shadow-lg w-full h-auto"
             />
           </div>
 
           {/* Right side - Content */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <div className="order-1 lg:order-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left">
               Neden <span className="text-emerald-600">Bizi</span> Seçmelisiniz?
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed text-center lg:text-left">
               Tesisat işlerinizde güvenilir, kaliteli ve hızlı hizmet almak için 
               doğru adrestesiniz. Müşteri memnuniyeti odaklı çalışma prensibimizle 
               her projede en iyi sonucu elde ediyoruz.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {reasons.map((reason, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center">
-                    <span className="text-lg">{reason.icon}</span>
+                <div key={index} className="flex items-start gap-2 sm:gap-3">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm sm:text-lg">{reason.icon}</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1 text-sm">
+                    <h3 className="font-semibold text-gray-900 mb-1 text-xs sm:text-sm">
                       {reason.title}
                     </h3>
-                    <p className="text-gray-600 text-xs leading-relaxed">
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                       {reason.description}
                     </p>
                   </div>
@@ -79,11 +79,11 @@ const WhyChooseUs = () => {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 Referanslarımızı Gör
               </button>
-              <button className="border-2 border-gray-300 text-gray-700 hover:border-emerald-400 hover:text-emerald-600 px-6 py-3 rounded-lg font-semibold transition-colors duration-300">
+              <button className="border-2 border-gray-300 text-gray-700 hover:border-emerald-400 hover:text-emerald-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 İletişime Geç
               </button>
             </div>

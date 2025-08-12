@@ -44,46 +44,45 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Left - Info */}
-          <div className="lg:sticky lg:top-24">
-            <div className="inline-flex items-center gap-2 text-emerald-600 text-sm font-medium mb-4">
+          <div className="lg:sticky lg:top-24 order-2 lg:order-1">
+            <div className="inline-flex items-center gap-2 text-emerald-600 text-xs sm:text-sm font-medium mb-3 sm:mb-4">
               <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
               <span>SIK SORULAN SORULAR</span>
               <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left">
               Merak Ettikleriniz
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed text-center lg:text-left">
               Müşterilerimizin en sık sorduğu soruları ve yanıtlarını derledik. 
               Aradığınız cevabı bulamıyorsanız bizimle iletişime geçin.
             </p>
 
             {/* Quick Contact Card */}
-            <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+            <div className="bg-emerald-50 p-4 sm:p-6 rounded-2xl border border-emerald-100">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 text-center lg:text-left">
                 Hemen Destek Alın
               </h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 text-center lg:text-left">
                 Acil durumlarınızda 7/24 hizmetinizdeyiz.
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center lg:justify-start">
                 <a
                   href="tel:+905325550123"
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors text-center touch-button"
                 >
                   📞 Ara
                 </a>
-                
               </div>
             </div>
           </div>
 
           {/* Right - FAQ List */}
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3 order-1 lg:order-2">
             {faqs.map((faq, index) => (
               <div
                 key={index}
@@ -95,26 +94,26 @@ const FAQ = () => {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left focus:outline-none"
+                  className="w-full p-3 sm:p-4 md:p-6 text-left focus:outline-none touch-button"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                  <div className="flex items-start justify-between gap-2 sm:gap-4">
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-colors flex-shrink-0 ${
                         activeIndex === index 
                           ? 'bg-emerald-500 text-white' 
                           : 'bg-gray-200 text-gray-600'
                       }`}>
                         {String(index + 1).padStart(2, '0')}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 leading-tight">
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 leading-tight">
                         {faq.question}
                       </h3>
                     </div>
-                    <div className={`w-6 h-6 flex-shrink-0 transition-all duration-300 ${
+                    <div className={`w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0 transition-all duration-300 ${
                       activeIndex === index ? 'rotate-180 text-emerald-600' : 'text-gray-400'
                     }`}>
                       <svg
-                        className="w-6 h-6"
+                        className="w-4 h-4 sm:w-6 sm:h-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -135,9 +134,9 @@ const FAQ = () => {
                     ? 'max-h-96 opacity-100' 
                     : 'max-h-0 opacity-0'
                 }`}>
-                  <div className="px-6 pb-6 ml-11">
-                    <div className="bg-white p-4 rounded-lg border border-emerald-100">
-                      <p className="text-gray-600 leading-relaxed">
+                  <div className="px-3 sm:px-4 md:px-6 pb-3 sm:pb-4 md:pb-6 ml-6 sm:ml-8 md:ml-11">
+                    <div className="bg-white p-3 sm:p-4 rounded-lg border border-emerald-100">
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base">
                         {faq.answer}
                       </p>
                     </div>

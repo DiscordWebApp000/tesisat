@@ -66,7 +66,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8">
           <div className="text-center text-gray-400 text-sm">
-            <p>
+            <p className='text-xs'>
               Copyright ©2024; Designed by{' '}
               <span className="text-emerald-400 font-medium">TESISAT PRO</span>
             </p>

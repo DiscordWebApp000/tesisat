@@ -41,61 +41,61 @@ const Services = () => {
   ];
 
   return (
-    <section id="hizmetler" className="py-20 bg-emerald-50/30">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="hizmetler" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-emerald-50/30">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Hizmetlerimiz
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
             Profesyonel ekibimizle tesisat alanında kapsamlı çözümler sunuyoruz.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group bg-white border border-gray-200 rounded-xl p-6 hover:border-emerald-300 hover:shadow-lg transition-all duration-300"
+              className="group bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               {/* Icon */}
-              <div className="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">{service.icon}</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                <span className="text-xl sm:text-2xl">{service.icon}</span>
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-3 sm:mb-4">
                 {service.description}
               </p>
 
-                                   {/* Learn More Link */}
-                     <a href={`/hizmetlerimiz/${service.slug}`} className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors duration-200">
-                       Detayları Gör
-                       <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                       </svg>
-                     </a>
+              {/* Learn More Link */}
+              <a href={`/hizmetlerimiz/${service.slug}`} className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors duration-200">
+                Detayları Gör
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           ))}
         </div>
 
         {/* Simple CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-white border border-gray-200 rounded-xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 max-w-2xl mx-auto">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">
               Özel Hizmet Paketleri
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
               Eviniz veya iş yeriniz için özel olarak hazırladığımız hizmet paketlerimizi inceleyin.
             </p>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base touch-button">
               Paketleri İncele
             </button>
           </div>

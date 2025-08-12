@@ -1,79 +1,67 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
+interface Haber {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  date: string;
+  author: string;
+  category: string;
+  categoryId: string;
+  readTime: string;
+  featured: boolean;
+}
+
+interface Kategori {
+  id: string;
+  name: string;
+  count: number;
+}
 
 const NewsPage = () => {
-  // Haber kategorileri
-  const categories = [
-    { id: 'all', name: 'Tümü', count: 12 },
-    { id: 'tips', name: 'İpuçları', count: 4 },
-    { id: 'trends', name: 'Trendler', count: 3 },
-    { id: 'maintenance', name: 'Bakım', count: 3 },
-    { id: 'installation', name: 'Kurulum', count: 2 }
-  ];
+  const [haberler, setHaberler] = useState<Haber[]>([]);
+  const [kategoriler, setKategoriler] = useState<Kategori[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Haber listesi
-  const newsItems = [
-    {
-      id: 1,
-      category: 'tips',
-      title: 'Kış Aylarında Tesisat Bakımı Nasıl Yapılır?',
-      excerpt: 'Soğuk havalarda tesisatınızı donmaya karşı korumak için almanız gereken önlemler ve yapmanız gereken bakım işlemleri.',
-      date: '15 Aralık 2024',
-      readTime: '5 dk',
-      featured: true,
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 2,
-      category: 'trends',
-      title: '2024 Banyo Tasarım Trendleri',
-      excerpt: 'Bu yıl en popüler banyo tasarım trendleri ve tesisat açısından dikkat edilmesi gereken detaylar.',
-      date: '10 Aralık 2024',
-      readTime: '7 dk',
-      featured: false,
-      image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 3,
-      category: 'maintenance',
-      title: 'Su Sayacı Okuma ve Bakım Rehberi',
-      excerpt: 'Su sayacınızı nasıl okuyacağınız ve düzenli bakımı için yapmanız gerekenler hakkında detaylı bilgiler.',
-      date: '5 Aralık 2024',
-      readTime: '4 dk',
-      featured: false,
-      image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 4,
-      category: 'installation',
-      title: 'Akıllı Su Ölçer Sistemi Kurulumu',
-      excerpt: 'Yeni nesil akıllı su ölçer sistemlerinin avantajları ve kurulum süreçleri hakkında bilmeniz gerekenler.',
-      date: '1 Aralık 2024',
-      readTime: '6 dk',
-      featured: false,
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 5,
-      category: 'tips',
-      title: 'Gider Tıkanıklığı Nasıl Önlenir?',
-      excerpt: 'Evinizdeki giderlerin tıkanmasını önlemek için alınabilecek basit önlemler ve günlük bakım ipuçları.',
-      date: '28 Kasım 2024',
-      readTime: '3 dk',
-      featured: false,
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 6,
-      category: 'trends',
-      title: 'Çevre Dostu Tesisat Çözümleri',
-      excerpt: 'Sürdürülebilir ve çevre dostu tesisat sistemleri ile hem doğayı koruyun hem de tasarruf edin.',
-      date: '25 Kasım 2024',
-      readTime: '8 dk',
-      featured: false,
-      image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data/haberler.json');
+        const data = await response.json();
+        setHaberler(data.haberler);
+        setKategoriler(data.kategoriler);
+        setLoading(false);
+      } catch (error) {
+        console.error('Haber verisi yüklenirken hata:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Seçili kategoriye göre haberleri filtrele
+  const filteredHaberler = selectedCategory === 'all' 
+    ? haberler 
+    : haberler.filter(haber => haber.categoryId === selectedCategory);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Haberler yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -131,25 +119,30 @@ const NewsPage = () => {
 
             {/* Filter Buttons */}
             <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
+              {kategoriler.map((kategori) => (
                 <button
-                  key={category.id}
-                  className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200 text-sm font-medium"
+                  key={kategori.id}
+                  onClick={() => setSelectedCategory(kategori.id)}
+                  className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 ${
+                    selectedCategory === kategori.id
+                      ? 'border-emerald-500 text-emerald-600 bg-emerald-50'
+                      : 'border-gray-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50'
+                  }`}
                 >
-                  {category.name} ({category.count})
+                  {kategori.name} ({kategori.count})
                 </button>
               ))}
             </div>
           </div>
 
           {/* Featured Article */}
-          {newsItems.filter(item => item.featured).map((item) => (
-            <div key={item.id} className="mb-16 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          {filteredHaberler.filter(haber => haber.featured).map((haber) => (
+            <div key={haber.id} className="mb-16 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 <div className="relative h-64 lg:h-auto">
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={haber.image}
+                    alt={haber.title}
                     fill
                     className="object-cover"
                   />
@@ -160,17 +153,22 @@ const NewsPage = () => {
                 <div className="p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-medium">
-                      {categories.find(c => c.id === item.category)?.name}
+                      {haber.category}
                     </span>
-                    <span>{item.date}</span>
+                    <span>{haber.date}</span>
                     <span>•</span>
-                    <span>{item.readTime} okuma</span>
+                    <span>{haber.readTime}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">{item.excerpt}</p>
-                  <button className="self-start bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                  <Link href={`/haberler/${haber.slug}`}>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 hover:text-emerald-600 transition-colors cursor-pointer">{haber.title}</h3>
+                  </Link>
+                  <p className="text-gray-600 leading-relaxed mb-6">{haber.excerpt}</p>
+                  <Link 
+                    href={`/haberler/${haber.slug}`}
+                    className="self-start bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                  >
                     Devamını Oku
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -178,43 +176,48 @@ const NewsPage = () => {
 
           {/* Other Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {newsItems.filter(item => !item.featured).map((item) => (
+            {filteredHaberler.filter(haber => !haber.featured).map((haber) => (
               <article
-                key={item.id}
+                key={haber.id}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={haber.image}
+                    alt={haber.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                    {categories.find(c => c.id === item.category)?.name}
+                    {haber.category}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-                    <span>{item.date}</span>
+                    <span>{haber.date}</span>
                     <span>•</span>
-                    <span>{item.readTime} okuma</span>
+                    <span>{haber.readTime}</span>
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
-                    {item.title}
-                  </h3>
+                  <Link href={`/haberler/${haber.slug}`}>
+                    <h3 className="font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors cursor-pointer">
+                      {haber.title}
+                    </h3>
+                  </Link>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {item.excerpt}
+                    {haber.excerpt}
                   </p>
-                  <button className="text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors flex items-center gap-1">
+                  <Link 
+                    href={`/haberler/${haber.slug}`}
+                    className="text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors flex items-center gap-1"
+                  >
                     Devamını Oku
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M9 5l7 7-7 7"/>
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}
