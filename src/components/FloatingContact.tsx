@@ -80,7 +80,7 @@ const FloatingContact = () => {
       {/* Main Toggle Button */}
       <button
         onClick={toggleMenu}
-        className={`bg-blue-600 hover:bg-blue-700 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 ${
+        className={`bg-amber-600 hover:bg-amber-700 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 ${
           isOpen ? 'rotate-45' : 'rotate-0'
         } cursor-pointer relative z-10`}
         title="İletişim"

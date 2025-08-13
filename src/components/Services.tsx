@@ -86,20 +86,7 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Simple CTA */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 max-w-2xl mx-auto">
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">
-              Özel Hizmet Paketleri
-            </h3>
-            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
-              Eviniz veya iş yeriniz için özel olarak hazırladığımız hizmet paketlerimizi inceleyin.
-            </p>
-            <button className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base touch-button">
-              Paketleri İncele
-            </button>
-          </div>
-        </div>
+    
       </div>
     </section>
   );

@@ -114,27 +114,29 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 rounded-lg transition-all duration-300 touch-button hover:bg-gray-100`}
+            className={`lg:hidden p-2 z-50 rounded-lg transition-all duration-300 touch-button hover:bg-gray-100 relative ${
+              isMenuOpen ? 'bg-gray-100' : ''
+            }`}
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
           >
-            <div className="w-5 h-5 flex flex-col justify-center items-center">
-              <span className={`block w-4 h-0.5 transition-all duration-300 bg-gray-600 ${
-                isMenuOpen ? 'rotate-45 translate-y-1' : ''
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={`block w-5 h-0.5 transition-all duration-300 bg-gray-600 absolute ${
+                isMenuOpen ? 'rotate-45' : 'translate-y-[-6px]'
               }`}></span>
-              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 bg-gray-600 ${
+              <span className={`block w-5 h-0.5 transition-all duration-300 bg-gray-600 ${
                 isMenuOpen ? 'opacity-0' : ''
               }`}></span>
-              <span className={`block w-4 h-0.5 transition-all duration-300 mt-1 bg-gray-600 ${
-                isMenuOpen ? '-rotate-45 -translate-y-1' : ''
+              <span className={`block w-5 h-0.5 transition-all duration-300 bg-gray-600 absolute ${
+                isMenuOpen ? '-rotate-45' : 'translate-y-[6px]'
               }`}></span>
             </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden mobile-menu-container bg-white ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        <div className={`lg:hidden fixed inset-x-0 top-16 sm:top-20 transition-all duration-500 ease-in-out overflow-hidden mobile-menu-container bg-white shadow-lg ${
+          isMenuOpen ? 'max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
         }`}>
           <nav className={`py-4 space-y-2 border-t ${
             isScrolled ? 'border-gray-200' : 'border-white/20'

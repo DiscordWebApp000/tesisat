@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const WhyChooseUs = () => {
   const reasons = [
@@ -80,12 +81,16 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <Link href="/galeri">
               <button className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 Referanslarımızı Gör
               </button>
+              </Link>
+              <Link href="/iletisim">
               <button className="border-2 border-gray-300 text-gray-700 hover:border-amber-400 hover:text-amber-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 İletişime Geç
               </button>
+              </Link>
             </div>
           </div>
         </div>
