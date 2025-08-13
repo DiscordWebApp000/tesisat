@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith('/admin') || false;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +36,11 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
 
+  // Admin sayfasında Header'ı gösterme
+  if (isAdminPage) {
+    return null;
+  }
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
@@ -58,32 +66,32 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <Link href="/" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               Ana Sayfa
             </Link>
-            <Link href="/hizmetlerimiz" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/hizmetlerimiz" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               Hizmetlerimiz
             </Link>
-            <Link href="/galeri" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/galeri" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               Galeri
             </Link>
-            <Link href="/haberler" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/haberler" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               Haberler
             </Link>
-            <Link href="/hakkimizda" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/hakkimizda" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               Hakkımızda
             </Link>
-            <Link href="/iletisim" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-50 hover:text-blue-600 ${
+            <Link href="/iletisim" className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-amber-50 hover:text-amber-600 ${
               isScrolled ? 'text-gray-700' : 'text-white'
             }`}>
               İletişim
@@ -95,11 +103,11 @@ const Header = () => {
             <Link href="/iletisim">
               <button className={`relative px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:scale-105 overflow-hidden touch-button ${
                 isScrolled 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl' 
+                  ? 'bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl' 
                   : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border border-white/30'
               }`}>
                 <span className="relative z-10">Hemen Ara</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </Link>
           </div>

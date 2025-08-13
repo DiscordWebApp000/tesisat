@@ -1,141 +1,148 @@
-"use client"
-import React from 'react';
-import { useState } from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
+import { db } from '@/lib/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import Image from 'next/image';
 
-const GalleryPage = () => {
-  // State for modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState({
-    url: '',
-    title: '',
-    description: ''
-  });
+interface GalleryCategory {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  order: number;
+  isActive: boolean;
+}
 
-  // Function to open modal
-  const openModal = (image: string, title: string, description: string) => {
-    setSelectedImage({ url: image, title, description });
-    setIsModalOpen(true);
-    // Prevent scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-  };
+interface GalleryItem {
+  id: string;
+  title: string;
+  description: string;
+  categoryId: string;
+  imageUrl: string;
+  thumbnailUrl: string;
+  tags: string[];
+  isActive: boolean;
+  isFeatured: boolean;
+  order: number;
+}
 
-  // Function to close modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    // Re-enable scrolling
-    document.body.style.overflow = 'auto';
-  };
+const GaleriPage = () => {
+  const [categories, setCategories] = useState<GalleryCategory[]>([]);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [filteredItems, setFilteredItems] = useState<GalleryItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [loading, setLoading] = useState(true);
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
-  // Galeri kategorileri
-  const categories = [
-    { id: 'all', name: 'Tümü', count: 24 },
-    { id: 'bathroom', name: 'Banyo', count: 8 },
-    { id: 'kitchen', name: 'Mutfak', count: 6 },
-    { id: 'heating', name: 'Isıtma', count: 5 },
-    { id: 'plumbing', name: 'Tesisat', count: 5 }
-  ];
+  useEffect(() => {
+    fetchGalleryData();
+  }, []);
 
-  // Galeri fotoğrafları
-  const galleryItems = [
-    {
-      id: 1,
-      category: 'bathroom',
-      title: 'Modern Banyo Tesisatı',
-      description: 'Şık ve fonksiyonel banyo tasarımı',
-      image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 2,
-      category: 'kitchen',
-      title: 'Mutfak Su Tesisatı',
-      description: 'Komple mutfak tesisat yenileme',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 3,
-      category: 'heating',
-      title: 'Kombi Kurulumu',
-      description: 'Yeni nesil kombi montajı',
-      image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 4,
-      category: 'plumbing',
-      title: 'Ana Su Hattı',
-      description: 'Bina ana su hattı yenileme',
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 5,
-      category: 'bathroom',
-      title: 'Banyo Yenileme - Önce/Sonra',
-      description: 'Komple banyo tadilatı',
-      image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: true
-    },
-    {
-      id: 6,
-      category: 'kitchen',
-      title: 'Mutfak Lavabo Montajı',
-      description: 'Granit evye ve musluk takımı',
-      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 7,
-      category: 'heating',
-      title: 'Yerden Isıtma Sistemi',
-      description: 'Modern yerden ısıtma kurulumu',
-      image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
-    },
-    {
-      id: 8,
-      category: 'bathroom',
-      title: 'Duşakabin Kurulumu',
-      description: 'Cam duşakabin ve tesisat',
-      image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      beforeAfter: false
+  useEffect(() => {
+    if (selectedCategory === 'all') {
+      setFilteredItems(galleryItems);
+    } else {
+      setFilteredItems(galleryItems.filter(item => item.categoryId === selectedCategory));
     }
-  ];
+  }, [selectedCategory, galleryItems]);
+
+  const fetchGalleryData = async () => {
+    try {
+      setLoading(true);
+      
+      // Fetch categories - index hatası olmaması için orderBy kaldırıldı
+      const categoriesSnapshot = await getDocs(collection(db, 'gallery_categories'));
+      const categoriesData = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as GalleryCategory[];
+      
+      // Client-side sıralama
+      categoriesData.sort((a, b) => (a.order || 0) - (b.order || 0));
+      setCategories(categoriesData);
+
+      // Fetch gallery items - index hatası olmaması için orderBy kaldırıldı
+      const itemsSnapshot = await getDocs(collection(db, 'gallery_items'));
+      const itemsData = itemsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as GalleryItem[];
+      
+      // Client-side sıralama
+      itemsData.sort((a, b) => (a.order || 0) - (b.order || 0));
+      setGalleryItems(itemsData);
+      setFilteredItems(itemsData);
+      
+      // Debug bilgisi
+      console.log('📁 Kategoriler:', categoriesData);
+      console.log('🖼️ Galeri Resimleri:', itemsData);
+      console.log('🔍 Aktif resimler:', itemsData.filter(item => item.isActive));
+      
+      // Resim URL'lerini kontrol et
+      itemsData.forEach((item, index) => {
+        console.log(`Resim ${index + 1}:`, {
+          title: item.title,
+          imageUrl: item.imageUrl,
+          hasImage: !!item.imageUrl,
+          imageLength: item.imageUrl?.length || 0
+        });
+      });
+      
+    } catch (error) {
+      console.error('Galeri verisi yüklenirken hata:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getCategoryName = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.name : 'Kategori Yok';
+  };
+
+  const getCategoryIcon = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.icon : '📷';
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-amber-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Galeri yükleniyor...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {/* Hero Section - Galeri'ye özel */}
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
       <section className="relative py-32 text-white">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url("https://media.wusa9.com/assets/WUSA/images/ccba71a4-70ed-49a2-9bd4-88b395c21ce0/ccba71a4-70ed-49a2-9bd4-88b395c21ce0_1920x1080.jpg")'
+            backgroundImage: 'url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")'
           }}
         />
         <div className="absolute inset-0 bg-black opacity-75"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-blue-400">Galeri</span>
+            <span className="text-amber-400">Galeri</span>
           </h1>
           <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-3xl mx-auto">
-            Tamamladığımız projelerden seçkiler ve işçiliğimizin örnekleri.
+            Tesisat işlerimizden örnekler ve başarılı projelerimizi keşfedin
           </p>
           
-          {/* Quick Info */}
+          {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-              <div className="text-2xl font-bold text-blue-300">100+</div>
-              <div className="text-sm text-blue-100">Tamamlanan Proje</div>
+              <div className="text-2xl font-bold text-amber-400">{categories.length}</div>
+              <div className="text-sm text-amber-100">Kategori</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-              <div className="text-2xl font-bold text-blue-300">5</div>
-              <div className="text-sm text-blue-100">Farklı Kategori</div>
+              <div className="text-2xl font-bold text-amber-400">{galleryItems.length}</div>
+              <div className="text-sm text-amber-100">Proje</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-              <div className="text-2xl font-bold text-blue-300">100%</div>
-              <div className="text-sm text-blue-100">Müşteri Memnuniyeti</div>
+              <div className="text-2xl font-bold text-amber-400">{galleryItems.filter(i => i.isFeatured).length}</div>
+              <div className="text-sm text-amber-100">Öne Çıkan</div>
             </div>
           </div>
         </div>
@@ -144,155 +151,210 @@ const GalleryPage = () => {
       {/* Gallery Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Category Filter */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 text-emerald-600 text-sm font-medium mb-4">
-              <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
-              <span>PROJELERİMİZ</span>
-              <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
+            <div className="inline-flex items-center gap-2 text-amber-600 text-sm font-medium mb-4">
+              <div className="w-1 h-1 bg-amber-600 rounded-full"></div>
+              <span>GALERİ</span>
+              <div className="w-1 h-1 bg-amber-600 rounded-full"></div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Çalışma Örneklerimiz
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Projelerimizi İnceleyin
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              Yaptığımız işlerin kalitesini fotoğraflarla görebilirsiniz.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Tamamladığımız tesisat projelerinden örnekler ve detaylı bilgiler
             </p>
+          </div>
 
-            {/* Filter Buttons */}
+          {/* Category Filters */}
+          <div className="bg-gray-50 rounded-2xl p-6 mb-12">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Kategorilere Göre Filtrele</h3>
+            
             <div className="flex flex-wrap justify-center gap-3">
+              <button
+                onClick={() => setSelectedCategory('all')}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                  selectedCategory === 'all'
+                    ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25'
+                    : 'bg-white text-gray-700 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
+                }`}
+              >
+                🏠 Tümü ({galleryItems.length})
+              </button>
+              
               {categories.map((category) => (
                 <button
                   key={category.id}
-                  className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-200 text-sm font-medium"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                    selectedCategory === category.id
+                      ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25'
+                      : 'bg-white text-gray-700 hover:bg-amber-50 hover:text-amber-700 border border-gray-200'
+                  }`}
                 >
-                  {category.name} ({category.count})
+                  {category.icon} {category.name} ({galleryItems.filter(item => item.categoryId === category.id).length})
                 </button>
               ))}
             </div>
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {galleryItems.map((item) => (
-              <div
-                key={item.id}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  
-                  {/* Before/After Badge */}
-                  {item.beforeAfter && (
-                    <div className="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      Önce/Sonra
-                    </div>
-                  )}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-2xl font-bold text-gray-900">
+                {selectedCategory === 'all' ? 'Tüm Projeler' : getCategoryName(selectedCategory)}
+              </h3>
+              <span className="text-sm text-gray-500 bg-gray-100 px-3 py-2 rounded-full">
+                {filteredItems.length} proje bulundu
+              </span>
+            </div>
 
-                  {/* Category Badge */}
-                  <div className="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                    {categories.find(c => c.id === item.category)?.name}
-                  </div>
-
-                  {/* Overlay Content */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
-                    <p className="text-xs text-gray-200">{item.description}</p>
-                  </div>
-
-                  {/* View Button */}
-                  <div className="absolute inset-0 bg-emerald-600/0 group-hover:bg-emerald-600/20 transition-all duration-300 flex items-center justify-center">
-                    <button 
-                      onClick={() => openModal(item.image, item.title, item.description)}
-                      className="bg-white text-emerald-600 p-3 rounded-full opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-lg"
-                    >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 9a3 3 0 000 6 3 3 0 000-6zM12 17a5 5 0 110-10 5 5 0 010 10zM12 4.5C7.5 4.5 4.1 7.5 3 12c1.1 4.5 4.5 7.5 9 7.5s7.9-3 9-7.5c-1.1-4.5-4.5-7.5-9-7.5z"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+            {filteredItems.length === 0 ? (
+              <div className="text-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
+                <div className="text-8xl mb-6">🖼️</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Proje bulunamadı</h3>
+                <p className="text-gray-600 max-w-md mx-auto">
+                  {selectedCategory === 'all' 
+                    ? 'Henüz galeri projesi eklenmemiş. Yakında güzel projelerimizi görebileceksiniz.' 
+                    : 'Bu kategoride henüz proje bulunmuyor. Diğer kategorileri kontrol edebilirsiniz.'}
+                </p>
               </div>
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          <div className="text-center mt-12">
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
-              Daha Fazla Göster
-            </button>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {filteredItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+                  >
+                    <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                      {item.imageUrl ? (
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          onError={(e) => {
+                            console.log('Image load error:', item.imageUrl);
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                          onLoad={() => {
+                            console.log('Image loaded successfully:', item.imageUrl);
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <span className="text-6xl text-gray-300">🖼️</span>
+                        </div>
+                      )}
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className="inline-flex items-center gap-2 px-3 py-2 bg-white/95 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-700 shadow-lg">
+                          {getCategoryIcon(item.categoryId)} {getCategoryName(item.categoryId)}
+                        </span>
+                      </div>
+                      
+                      {/* Featured Badge */}
+                      {item.isFeatured && (
+                        <div className="absolute top-4 right-4">
+                          <span className="inline-flex items-center px-3 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full text-xs font-semibold shadow-lg">
+                            ⭐ Öne Çıkan
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Hover Overlay with Eye Icon */}
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div 
+                          onClick={() => setSelectedItem(item)}
+                          className="bg-white/90 backdrop-blur-sm rounded-full p-3 cursor-pointer transform scale-95 group-hover:scale-100 transition-transform duration-300 hover:bg-white hover:scale-105"
+                        >
+                          <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-
-
-
       {/* Image Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={closeModal}>
-          <div 
-            className="relative max-w-5xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close button */}
-            <button 
-              className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
-              onClick={closeModal}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            
-            <div className="flex flex-col md:flex-row">
-              {/* Image */}
-              <div className="md:w-3/4 bg-gray-900 relative">
-                <Image 
-                  src={selectedImage.url} 
-                  alt={selectedImage.title}
-                  fill
-                  className="object-contain" 
-                  sizes="(max-width: 768px) 100vw, 75vw"
-                />
+      {selectedItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto shadow-2xl">
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">{selectedItem.title}</h2>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
               
-              {/* Info */}
-              <div className="md:w-1/4 p-6 bg-white mt-12">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{selectedImage.title}</h3>
-                <p className="text-gray-600 mb-4">{selectedImage.description}</p>
-                
-                <div className="border-t border-gray-200 pt-4 mt-12">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Proje Detayları</h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
-                    <li className="flex items-center gap-2">
-                      <span className="w-4 h-4 bg-emerald-100 rounded-full flex items-center justify-center">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                      </span>
-                      <span>Profesyonel işçilik</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="w-4 h-4 bg-emerald-100 rounded-full flex items-center justify-center">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                      </span>
-                      <span>Kaliteli malzeme</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="w-4 h-4 bg-emerald-100 rounded-full flex items-center justify-center">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                      </span>
-                      <span>2 yıl garanti</span>
-                    </li>
-                  </ul>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                  {selectedItem.imageUrl ? (
+                    <Image
+                      src={selectedItem.imageUrl}
+                      alt={selectedItem.title}
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-6xl text-gray-300">🖼️</span>
+                    </div>
+                  )}
                 </div>
                 
-               
+                <div>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 mb-2">Kategori</h3>
+                      <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-lg">
+                        <span className="text-2xl">{getCategoryIcon(selectedItem.categoryId)}</span>
+                        <span className="text-lg font-semibold text-gray-900">
+                          {getCategoryName(selectedItem.categoryId)}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-500 mb-2">Açıklama</h3>
+                      <p className="text-gray-900 leading-relaxed">{selectedItem.description}</p>
+                    </div>
+                    
+                    {selectedItem.tags && selectedItem.tags.length > 0 && (
+                      <div>
+                        <h3 className="text-sm font-medium text-gray-500 mb-2">Etiketler</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedItem.tags.map((tag, index) => (
+                            <span
+                              key={index}
+                              className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-sm rounded-full font-medium"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -302,4 +364,4 @@ const GalleryPage = () => {
   );
 };
 
-export default GalleryPage;
+export default GaleriPage;

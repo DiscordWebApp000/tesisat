@@ -8,7 +8,7 @@ import FloatingContact from "@/components/FloatingContact";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tesisat Pro - Profesyonel Tesisat Hizmetleri",
+  title: "Seka Altyapı - Profesyonel Tesisat Hizmetleri",
   description: "İstanbul'da 20 yıllık deneyimle profesyonel tesisat hizmetleri. Su tesisatı, ısıtma sistemleri, banyo mutfak tesisatı ve acil servis.",
 };
 
@@ -20,11 +20,21 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
-        <FloatingContact />
+        <RootLayoutContent>{children}</RootLayoutContent>
       </body>
     </html>
+  );
+}
+
+function RootLayoutContent({ children }: { children: React.ReactNode }) {
+  // Admin sayfalarında Header, Footer ve FloatingContact gösterme
+  // Bu kontrol client-side'da yapılacak
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+      <FloatingContact />
+    </>
   );
 }

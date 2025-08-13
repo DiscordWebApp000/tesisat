@@ -1,7 +1,17 @@
+'use client'
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith('/admin') || false;
+
+  // Admin sayfasında Footer'ı gösterme
+  if (isAdminPage) {
+    return null;
+  }
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-6xl mx-auto px-4 py-12">
@@ -68,7 +78,7 @@ const Footer = () => {
           <div className="text-center text-gray-400 text-sm">
             <p className='text-xs'>
               Copyright ©2024; Designed by{' '}
-              <span className="text-emerald-400 font-medium">TESISAT PRO</span>
+              <span className="text-amber-400 font-medium">Seka Altyapı</span>
             </p>
           </div>
         </div>

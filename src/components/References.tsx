@@ -85,19 +85,19 @@ const References = () => {
         <div className="bg-gray-50 p-4 sm:p-6 rounded-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-1 sm:mb-2">500+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1 sm:mb-2">500+</div>
               <p className="text-xs sm:text-sm text-gray-600">Tamamlanan İş</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-1 sm:mb-2">1000+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1 sm:mb-2">1000+</div>
               <p className="text-xs sm:text-sm text-gray-600">Mutlu Müşteri</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-1 sm:mb-2">20+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1 sm:mb-2">20+</div>
               <p className="text-xs sm:text-sm text-gray-600">Yıl Deneyim</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-1 sm:mb-2">24/7</div>
+              <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1 sm:mb-2">24/7</div>
               <p className="text-xs sm:text-sm text-gray-600">Hizmet</p>
             </div>
           </div>

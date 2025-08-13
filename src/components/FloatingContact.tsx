@@ -1,8 +1,11 @@
 'use client'
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const FloatingContact = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith('/admin') || false;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -43,6 +46,11 @@ const FloatingContact = () => {
       delay: '200ms'
     }
   ];
+
+  // Admin sayfasında FloatingContact'ı gösterme
+  if (isAdminPage) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-6 right-6 z-50 select-none flex flex-col items-center">

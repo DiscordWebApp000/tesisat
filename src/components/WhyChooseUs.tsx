@@ -53,7 +53,7 @@ const WhyChooseUs = () => {
           {/* Right side - Content */}
           <div className="order-1 lg:order-2">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left">
-              Neden <span className="text-emerald-600">Bizi</span> Seçmelisiniz?
+              Neden <span className="text-amber-600">Bizi</span> Seçmelisiniz?
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed text-center lg:text-left">
               Tesisat işlerinizde güvenilir, kaliteli ve hızlı hizmet almak için 
@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {reasons.map((reason, index) => (
                 <div key={index} className="flex items-start gap-2 sm:gap-3">
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
                     <span className="text-sm sm:text-lg">{reason.icon}</span>
                   </div>
                   <div>
@@ -80,10 +80,10 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
+              <button className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 Referanslarımızı Gör
               </button>
-              <button className="border-2 border-gray-300 text-gray-700 hover:border-emerald-400 hover:text-emerald-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
+              <button className="border-2 border-gray-300 text-gray-700 hover:border-amber-400 hover:text-amber-600 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base touch-button">
                 İletişime Geç
               </button>
             </div>

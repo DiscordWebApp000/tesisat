@@ -41,7 +41,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="hizmetler" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-emerald-50/30">
+    <section id="hizmetler" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -58,10 +58,10 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="group bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:border-amber-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               {/* Icon */}
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                 <span className="text-xl sm:text-2xl">{service.icon}</span>
               </div>
 
@@ -76,7 +76,7 @@ const Services = () => {
               </p>
 
               {/* Learn More Link */}
-              <a href={`/hizmetlerimiz/${service.slug}`} className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors duration-200">
+              <a href={`/hizmetlerimiz/${service.slug}`} className="inline-flex items-center text-amber-600 hover:text-amber-700 font-medium text-sm transition-colors duration-200">
                 Detayları Gör
                 <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -95,7 +95,7 @@ const Services = () => {
             <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
               Eviniz veya iş yeriniz için özel olarak hazırladığımız hizmet paketlerimizi inceleyin.
             </p>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base touch-button">
+            <button className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base touch-button">
               Paketleri İncele
             </button>
           </div>
