@@ -11,7 +11,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "7/24 acil servis hizmeti veriyor musunuz?",
-      answer: "Evet, 7 gün 24 saat acil tesisat hizmeti veriyoruz. Su kaçağı, gider tıkanıklığı, kombi arızası gibi acil durumlarınızda hemen bizi arayabilirsiniz."
+      answer: "Evet, 7 gün 24 saat acil tesisat hizmeti veriyoruz. , gider tıkanıklığı, gibi acil durumlarınızda hemen bizi arayabilirsiniz."
     },
     {
       question: "Tesisat işlerinizde garanti veriyor musunuz?",
@@ -19,7 +19,7 @@ const FAQ = () => {
     },
     {
       question: "Fiyat teklifi almak için ne yapmam gerekiyor?",
-      answer: "Ücretsiz keşif ve fiyat teklifi için bizi arayabilir veya iletişim formundan mesaj gönderebilirsiniz. Uzman ekibimiz gelip işi yerinde inceleyerek size detaylı fiyat teklifi sunar."
+      answer: " keşif ve fiyat teklifi için bizi arayabilir veya iletişim formundan mesaj gönderebilirsiniz. Uzman ekibimiz gelip işi yerinde inceleyerek size detaylı fiyat teklifi sunar."
     },
     {
       question: "Hangi bölgelerde hizmet veriyorsunuz?",
@@ -30,12 +30,12 @@ const FAQ = () => {
       answer: "Evet, kaliteli ve garantili malzemeleri biz temin ediyoruz. İsterseniz kendi malzemenizi de getirebilirsiniz. Sadece işçilik ücreti alırız."
     },
     {
-      question: "Su kaçağı tespiti nasıl yapılır?",
-      answer: "Modern cihazlarla su kaçağı tespiti yapıyoruz. Termal kamera, ses dinleme cihazları ve basınç testleri ile kaçağın yerini tespit ediyoruz. Yıkım yapmadan sorunun yerini bulabiliriz."
+      question: "Gider tıkanıklıgı tespiti nasıl yapılır?",
+      answer: "Modern cihazlarla gider tıkanıklıgı tespiti yapıyoruz. Borutipi Kamera,  cihazları ve basınç testleri ile Tıkankıklığın yerini tespit ediyoruz. Yıkım yapmadan sorunun yerini bulabiliriz."
     },
     {
-      question: "Kombi bakımı ne sıklıkla yapılmalı?",
-      answer: "Kombi bakımı yılda en az bir kez yapılmalıdır. Özellikle kış öncesi bakım önemlidir. Düzenli bakım sayesinde kombinizin ömrü uzar ve enerji tasarrufu sağlarsınız."
+      question: "Gider Bakımı ne sıklıkla yapılmalı?",
+      answer: "Gider bakımı yılda en az bir kez yapılmalıdır. Özellikle kış öncesi bakım önemlidir. Düzenli bakım sayesinde Giderinizin ömrü uzar."
     },
     {
       question: "Ödeme nasıl yapabilirim?",
@@ -72,7 +72,7 @@ const FAQ = () => {
               </p>
               <div className="flex gap-3 justify-center lg:justify-start">
                 <a
-                  href="tel:+905325550123"
+                  href="tel:+905327899182"
                   className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors text-center touch-button"
                 >
                   📞 Ara

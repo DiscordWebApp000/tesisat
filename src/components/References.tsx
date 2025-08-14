@@ -8,16 +8,16 @@ const References = () => {
       company: "Konut Sahibi",
       location: "Kadıköy, İstanbul",
       rating: 5,
-      comment: "Çok profesyonel bir ekip. Su kaçağı sorunumu 2 saatte çözdüler. Kesinlikle tavsiye ederim!",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      comment: "Çok profesyonel bir ekip. Su tıkanıklığı 2 saatte kırma dökme olmadan çözdüler. Kesinlikle tavsiye ederim!",
+      image: "/img/ahmet.avif"
     },
     {
-      name: "Fatma Demir",
+      name: "Banu demirkul",
       company: "İş Yeri Sahibi",
       location: "Beşiktaş, İstanbul",
       rating: 5,
       comment: "İş yerimizdeki tesisat sorununu çok hızlı çözdüler. 7/24 hizmet gerçekten çok değerli.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/ayşe.avif"
     },
     {
       name: "Mehmet Kaya",
@@ -25,15 +25,15 @@ const References = () => {
       location: "Şişli, İstanbul",
       rating: 5,
       comment: "Apartmanımızda yapılan tesisat işleri çok kaliteli. 2 yıldır hiç sorun yaşamadık.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/banu.avif"
     },
     {
-      name: "Ayşe Özkan",
+      name: "ali öztürk",
       company: "Ev Sahibi",
       location: "Üsküdar, İstanbul",
       rating: 5,
-      comment: "Gece yarısı su kesintisi yaşadık, 1 saatte geldiler. Çok teşekkürler!",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      comment: "Gece yarısı kanalizasyon Tıkanıklığı  yaşadık, 1 saatte geldiler. Çok teşekkürler!",
+      image: "/img/ali.avif"
     }
   ];
 

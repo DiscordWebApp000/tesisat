@@ -209,7 +209,7 @@ const ContactPage = () => {
                       className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200"
                     >
                       <option value="">Hizmet seçiniz</option>
-                      <option value="su-tesisati">Su Tesisatı</option>
+                      <option value="su-tesisati">Kanalizasyon</option>
                       <option value="isitma-sistemi">Isıtma Sistemi</option>
                       <option value="banyo-mutfak">Banyo & Mutfak</option>
                       <option value="acil-servis">Acil Servis</option>
@@ -338,8 +338,8 @@ const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Park Alanı</p>
-                    <p className="text-gray-600 text-sm">Ücretsiz müşteri park alanı</p>
+                    <p className="font-medium text-gray-900">Hızlı Servis</p>
+                    <p className="text-gray-600 text-sm"> Her zaman yanınızda</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-5 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
@@ -350,7 +350,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Çalışma Saatleri</p>
-                    <p className="text-gray-600 text-sm">Haftaiçi: 08:00-18:00</p>
+                    <p className="text-gray-600 text-sm"> 7/24 Hizmet</p>
                   </div>
                 </div>
               </div>
@@ -378,8 +378,8 @@ const ContactPage = () => {
                 <span className="text-2xl">📞</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">7/24 Acil Servis</h3>
-              <p className="text-amber-600 font-bold text-lg">+90 (532) 555 0123</p>
-              <p className="text-gray-500 text-sm">+90 (212) 555 0123</p>
+              <p className="text-amber-600 font-bold text-lg">+90 532 789 91 82</p>
+              <p className="text-gray-500 text-sm">+90 532 789 91 82</p>
             </div>
             
             {/* Email */}

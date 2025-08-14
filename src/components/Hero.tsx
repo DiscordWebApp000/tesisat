@@ -7,7 +7,7 @@ const Hero = () => {
       {/* Background Image - Optimized */}
       <div className="absolute inset-0">
         <Image
-          src="https://media.wusa9.com/assets/WUSA/images/ccba71a4-70ed-49a2-9bd4-88b395c21ce0/ccba71a4-70ed-49a2-9bd4-88b395c21ce0_1920x1080.jpg"
+          src="/img/slider.jpg"
           alt="Tesisat Hizmetleri Arka Plan"
           fill
           priority
@@ -16,6 +16,7 @@ const Hero = () => {
           quality={85}
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+JNwTLI5xY/wAk/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwUG/9oACAEBAwE/AMZb3X7f/9k="
+         
         />
       </div>
       
@@ -37,15 +38,15 @@ const Hero = () => {
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-medium text-gray-200 max-w-lg mx-auto sm:mx-0 leading-relaxed">
-            Su tesisatı, doğalgaz, kalorifer sistemlerinde uzman ekibimizle hizmetinizdeyiz.
+          kanalizasyon açma , kanalizasyon görüntüleme  sistemlerinde uzman ekibimizle hizmetinizdeyiz.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
             <button className="bg-amber-600 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-amber-700 transition-all shadow-xl transform hover:scale-105 touch-button">
-              Ücretsiz Keşif
+              Fiyat Öğren
             </button>
             <button className="border-2 border-white text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-white hover:text-black transition-all touch-button">
-              📞 0532 XXX XX XX
+              📞 0532 789 91 82
             </button>
           </div>
         </div>

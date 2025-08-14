@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
           {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">
             <Image 
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+              src="/img/sayfa1.jpg"
               alt="Profesyonel Tesisat Ekibi"
               width={1000}
               height={600}

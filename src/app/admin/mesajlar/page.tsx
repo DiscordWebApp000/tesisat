@@ -103,7 +103,7 @@ const AdminMessages = () => {
 
   const getServiceTypeText = (serviceType: string) => {
     switch (serviceType) {
-      case 'su-tesisati': return 'Su Tesisatı';
+      case 'su-tesisati': return 'Kanalizasyon';
       case 'isitma-sistemi': return 'Isıtma Sistemi';
       case 'banyo-mutfak': return 'Banyo & Mutfak';
       case 'acil-servis': return 'Acil Servis';

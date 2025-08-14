@@ -56,12 +56,12 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link href="/hizmetlerimiz" className="text-gray-300 text-sm cursor-pointer hover:text-white transition-colors">
-                  🚰 Su Tesisatı
+                  🕳️Kanalizasyon
                 </Link>
               </li>
               <li>
                 <Link href="/hizmetlerimiz" className="text-gray-300 text-sm cursor-pointer hover:text-white transition-colors">
-                  🔥 Isıtma Sistemleri
+                👷🏼 Kanalizasyon Tünel
                 </Link>
               </li>
               <li>
@@ -87,7 +87,7 @@ const Footer = () => {
                 📍 İstanbul, Türkiye
               </li>
               <li className="text-gray-300 text-sm">
-                📞 +90 532 XXX XX XX
+                📞 +90 532 789 91 82
               </li>
               <li className="text-gray-300 text-sm">
                 ✉️ info@sekaaltyapi.com
@@ -105,7 +105,7 @@ const Footer = () => {
             </h3>
             <div className="flex gap-3">
               <a 
-                href="https://wa.me/905325550123" 
+                href="https://wa.me/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center text-white transition-all duration-300"
@@ -117,7 +117,7 @@ const Footer = () => {
               </a>
               
               <a 
-                href="tel:+905325550123" 
+                href="tel:+905327899182" 
                 className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300"
                 title="Telefon"
               >
@@ -169,7 +169,7 @@ const Footer = () => {
             {/* Copyright */}
             <div className="text-center md:text-right">
               <p className="text-gray-400 text-sm">
-                © 2024 <span className="text-amber-400 font-medium">Seka Altyapı</span>. 
+                © 2025 <span className="text-amber-400 font-medium">Seka Altyapı</span>. 
                 Tüm hakları saklıdır.
               </p>
             </div>

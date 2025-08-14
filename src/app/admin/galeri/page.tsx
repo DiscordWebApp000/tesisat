@@ -504,7 +504,7 @@ const AdminGallery = () => {
                   onChange={(e) => setCategoryForm({...categoryForm, name: e.target.value})}
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
-                  placeholder="Örn: Su Tesisatı"
+                  placeholder="Örn: Kanalizasyon"
                 />
               </div>
               
@@ -605,7 +605,7 @@ const AdminGallery = () => {
                         onChange={(e) => setItemForm({...itemForm, title: e.target.value})}
                         required
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
-                        placeholder="Örn: Modern Su Tesisatı"
+                        placeholder="Örn: Modern Kanalizasyon"
                       />
                     </div>
                     
@@ -786,7 +786,7 @@ const AdminGallery = () => {
                         onClick={() => setItemForm({...itemForm, imageUrl: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop'})}
                         className="block text-xs text-blue-600 hover:text-blue-800 text-left w-full"
                       >
-                        🔥 Isıtma sistemi örneği
+                        👷🏼 Isıtma sistemi örneği
                       </button>
                     </div>
                   </div>

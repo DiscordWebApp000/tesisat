@@ -24,8 +24,8 @@ async function setupGalleryCategories() {
     const categories = [
       {
         id: 'su-tesisati',
-        name: 'Su Tesisatı',
-        description: 'Su tesisatı işleri ve örnekler',
+        name: 'Kanalizasyon',
+        description: 'Kanalizasyon işleri ve örnekler',
         icon: '💧',
         color: 'blue',
         order: 1,
@@ -36,7 +36,7 @@ async function setupGalleryCategories() {
         id: 'kalorifer-tesisati',
         name: 'Kalorifer Tesisatı',
         description: 'Kalorifer ve ısıtma sistemleri',
-        icon: '🔥',
+        icon: '👷🏼',
         color: 'red',
         order: 2,
         isActive: true,
@@ -85,8 +85,8 @@ async function setupGalleryCategories() {
     const galleryItems = [
       {
         id: 'item_001',
-        title: 'Modern Su Tesisatı',
-        description: 'Yeni bina su tesisatı kurulumu',
+        title: 'Modern Kanalizasyon',
+        description: 'Yeni bina Kanalizasyon kurulumu',
         categoryId: 'su-tesisati',
         imageUrl: '/api/placeholder/400/300',
         thumbnailUrl: '/api/placeholder/200/150',

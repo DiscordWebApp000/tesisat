@@ -3,21 +3,21 @@ import React from 'react';
 const Services = () => {
   const services = [
     {
-      icon: "🚰",
-      title: "Su Tesisatı",
-      description: "Su kaçağı tespiti, boru değişimi, musluk tamiri ve tüm su tesisatı işleriniz.",
-      slug: "su-tesisati"
+      icon: "🕳️",
+      title: "kanalizasyon ",
+      description: " Kanalizasyon görüntüleme Ve Kanalizasyon açma  işleriniz.",
+      slug: "kanalizasyon"
     },
     {
-      icon: "🔥",
-      title: "Isıtma Sistemleri",
-      description: "Kombi kurulumu, petek montajı, ısıtma sistemi bakım ve onarımı.",
-      slug: "isitma-sistemleri"
+      icon: "👷🏼",
+      title: "Kanalizasyon Tünel",
+      description: "Binanızın Altına Kanalizasyon Tünel Kazma İşleriniz",
+      slug: "kanalizasyon-tunel"
     },
     {
       icon: "🚿",
       title: "Banyo & Mutfak",
-      description: "Banyo ve mutfak tesisatı, gider tıkanıklığı, lavabo montajı.",
+      description: "Banyo ve mutfak tesisatı, gider tıkanıklığı açma Hizmeti",
       slug: "banyo-mutfak"
     },
     {

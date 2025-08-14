@@ -18,7 +18,7 @@ const Contact = () => {
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📞</div>
             <h3 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">7/24 Acil Servis</h3>
-            <p className="text-amber-600 font-bold text-sm sm:text-base">+90 (532) 555 0123</p>
+            <p className="text-amber-600 font-bold text-sm sm:text-base">+90 532 789 91 82</p>
           </div>
           
           <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100">

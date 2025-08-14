@@ -4,46 +4,37 @@ import Image from 'next/image';
 const ServicesPage = () => {
   const services = [
     {
-      icon: "🚰",
-      title: "Su Tesisatı",
-      description: "Su kaçağı tespiti, boru değişimi, musluk tamiri ve tüm su tesisatı işleriniz.",
+      icon: "🕳️",
+      title: "Kanalizasyon",
+      description: "Kanalizasyon görüntüleme Ve Kanalizasyon açma  işleriniz.",
       features: [
-        "Su kaçağı tespiti ve onarımı",
-        "Boru değişimi ve yenileme",
-        "Musluk ve batarya montajı",
-        "Su sayacı kurulumu",
-        "Su basıncı ayarlama",
-        "Su filtreleme sistemleri"
+        "Kanalizasyon Görüntüleme",
+        "Tıkalı Kanalizasyon Açma",
+        "kanalizasyon İşlemleri "
       ],
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/tünel.jpg"
     },
     {
-      icon: "🔥",
-      title: "Isıtma Sistemleri",
-      description: "Kombi kurulumu, petek montajı, ısıtma sistemi bakım ve onarımı.",
+      icon: "👷🏼",
+      title: "Kanalizasyon Tünel",
+      description: "Binanızın Altına Kanalizasyon Tünel Kazma İşleriniz",
       features: [
-        "Kombi kurulumu ve bakımı",
-        "Petek montajı ve değişimi",
-        "Yerden ısıtma sistemleri",
-        "Kazan kurulumu ve bakımı",
-        "Isıtma sistemi optimizasyonu",
-        "Enerji tasarrufu çözümleri"
+        "Tünel kazma ",
+        "Tünel Kapatma",
+        "Kanalizasyon Hattı açma "
       ],
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/slider.jpg"
     },
     {
       icon: "🚿",
       title: "Banyo & Mutfak",
-      description: "Banyo ve mutfak tesisatı, gider tıkanıklığı, lavabo montajı.",
+      description: "Banyo ve mutfak tesisatı, gider tıkanıklığı,açma Hizmeti",
       features: [
-        "Banyo tesisatı kurulumu",
-        "Mutfak tesisatı düzenleme",
-        "Gider tıkanıklığı açma",
-        "Lavabo ve evye montajı",
-        "Duşakabin kurulumu",
-        "WC ve bidet montajı"
+        "Banyo Gideri Açma",
+        "Mutfak Gideri Açma",
+        "Gider tıkanıklığı açma"
       ],
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/gider.jpg"
     },
     {
       icon: "🔧",
@@ -51,13 +42,13 @@ const ServicesPage = () => {
       description: "7/24 acil tesisat arıza giderme, su kesintisi ve acil müdahale.",
       features: [
         "7/24 acil müdahale",
-        "Su kesintisi çözümü",
+        "Tıkalı Gider Sorunu",
         "Acil tesisat onarımı",
         "Gece müdahale hizmeti",
         "Hızlı sorun tespiti",
         "Geçici çözüm uygulama"
       ],
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/acil.jpg"
     },
     {
       icon: "🏠",
@@ -71,7 +62,7 @@ const ServicesPage = () => {
         "Test ve devreye alma",
         "Kullanım kılavuzu"
       ],
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/tesisat.jpg"
     },
     {
       icon: "🔍",
@@ -85,7 +76,7 @@ const ServicesPage = () => {
         "Güvenlik kontrolü",
         "Bakım takip sistemi"
       ],
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      image: "/img/kontrol.jpg"
     }
   ];
 
@@ -95,7 +86,7 @@ const ServicesPage = () => {
       <section className="relative py-32 text-white">
         <div className="absolute inset-0">
           <Image
-            src="https://images.ctfassets.net/3q1a0w8cwuwf/5uX51bWDGc78Fm0ccSp6In/87bfb51906fe64ba7b6a161f0aa780e0/010203-BlogHeaders-December-Schools-Michigan-Plumbing-1920x1080_1x.png"
+            src="/img/sayfa2.jpg"
             alt="Hizmetlerimiz Arka Plan"
             fill
             priority
@@ -302,7 +293,7 @@ const ServicesPage = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLdXhV77INQjs26m7T61uuFSrA2wfHTSggsA&s')`
+            backgroundImage: `url('/img/sayfa2.jpg')`
           }}
         ></div>
         {/* Dark overlay */}

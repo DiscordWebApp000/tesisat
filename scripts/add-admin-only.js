@@ -38,7 +38,7 @@ async function createAdminOnly() {
       passwordHash,
       passwordUpdatedAt: new Date().toISOString(),
       profile: {
-        phone: '+90 532 555 0123',
+        phone: '+90 532 789 91 82',
         position: 'Site Yöneticisi',
         department: 'IT',
         avatar: null

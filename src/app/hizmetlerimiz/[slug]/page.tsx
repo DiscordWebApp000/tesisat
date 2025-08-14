@@ -1,15 +1,14 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 
 // Services data - JSON'dan gelecek
 const servicesData = {
-  'su-tesisati': {
-    id: 'su-tesisati',
-    title: 'Su Tesisatı',
-    icon: '🚰',
-    description: 'Su kaçağı tespiti, boru değişimi, musluk tamiri ve tüm su tesisatı işleriniz.',
-    heroImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+  'kanalizasyon': {
+    id: 'kanalizasyon',
+    title: 'Kanalizasyon',
+    icon: '🕳️',
+    description: 'Kanalizasyon görüntüleme Ve Kanalizasyon açma işleriniz.',
+    heroImage: '/img/tesisat.jpg',
     features: [
       'Su kaçağı tespiti ve onarımı',
       'Boru değişimi ve yenileme',
@@ -21,7 +20,7 @@ const servicesData = {
       'Gider ve kanalizasyon işleri'
     ],
     detailedInfo: {
-      overview: 'Su tesisatı hizmetlerimiz, modern teknoloji ve 20 yıllık deneyimimizle evinizdeki tüm su ile ilgili sorunları çözmek üzere tasarlanmıştır.',
+      overview: 'Kanalizasyon hizmetlerimiz, modern teknoloji ve 20 yıllık deneyimimizle evinizdeki tüm su ile ilgili sorunları çözmek üzere tasarlanmıştır.',
       whyChoose: [
         'Modern kaçak tespit cihazları kullanımı',
         'Orijinal ve kaliteli malzeme garantisi',
@@ -37,63 +36,55 @@ const servicesData = {
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '250₺',
-      description: 'Keşif ücretsiz, fiyatlar işin kapsamına göre belirlenir.'
-    }
+      '/img/tesisat.jpg',
+      '/img/gider.jpg',
+      '/img/kontrol.jpg'
+    ]
   },
-  'isitma-sistemleri': {
-    id: 'isitma-sistemleri',
-    title: 'Isıtma Sistemleri',
-    icon: '🔥',
-    description: 'Kombi kurulumu, petek montajı, ısıtma sistemi bakım ve onarımı.',
-    heroImage: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+  'kanalizasyon-tunel': {
+    id: 'kanalizasyon-tunel',
+    title: 'Kanalizasyon Tünel',
+    icon: '👷🏼',
+    description: 'Binanızın Altına Kanalizasyon Tünel Kazma İşleriniz',
+    heroImage: '/img/tünel.jpg',
     features: [
-      'Kombi kurulumu ve bakımı',
-      'Petek montajı ve değişimi',
-      'Yerden ısıtma sistemleri',
-      'Kazan kurulumu ve bakımı',
-      'Isıtma sistemi optimizasyonu',
-      'Enerji tasarrufu çözümleri',
-      'Isıtma kontrol sistemleri',
-      'Radyatör ve convektör montajı'
+      'Tünel kazma ve açma işleri',
+      'Yeraltı kanalizasyon hattı',
+      'Bina altı tünel projesi',
+      'Kanalizasyon hattı döşeme',
+      'Tünel güçlendirme işleri',
+      'Yeraltı su yolu açma',
+      'Tünel bakım ve onarım',
+      'Kanalizasyon hattı kontrolü'
     ],
     detailedInfo: {
-      overview: 'Isıtma sistemleri konusunda uzman ekibimizle, kombiden yerden ısıtmaya kadar tüm sistemlerin kurulum, bakım ve onarım hizmetlerini sunuyoruz.',
+      overview: 'Kanalizasyon Tünel konusunda uzman ekibimizle, bina altı tünel kazma ve kanalizasyon hattı döşeme işlerini profesyonelce gerçekleştiriyoruz.',
       whyChoose: [
-        'Tüm marka kombi servis yetkisi',
-        'Enerji verimli sistem önerileri',
-        'Profesyonel kurulum ve test',
-        'Yıllık bakım paket seçenekleri',
-        'Garanti kapsamında hızlı servis'
+        'Deneyimli tünel kazma ekibi',
+        'Modern kazma ekipmanları',
+        'Güvenli tünel güçlendirme',
+        'Proje bazlı çözümler',
+        'Kaliteli malzeme kullanımı'
       ],
       process: [
-        { step: 1, title: 'İhtiyaç Analizi', description: 'Mekanın ısıtma ihtiyacı hesaplanır' },
-        { step: 2, title: 'Sistem Tasarımı', description: 'En verimli sistem tasarlanır' },
-        { step: 3, title: 'Kurulum', description: 'Profesyonel montaj ve test' },
-        { step: 4, title: 'Eğitim ve Garanti', description: 'Kullanım eğitimi ve garanti' }
+        { step: 1, title: 'Yer Tespiti', description: 'Tünel kazılacak alanın belirlenmesi' },
+        { step: 2, title: 'Proje Tasarımı', description: 'Tünel projesi ve güvenlik önlemleri' },
+        { step: 3, title: 'Kazma İşlemi', description: 'Profesyonel ekipmanla güvenli kazma' },
+        { step: 4, title: 'Hattın Döşenmesi', description: 'Kanalizasyon hattının kurulumu' }
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '500₺',
-      description: 'Kombi bakımı 350₺\'den başlar. Kurulum fiyatları sistem türüne göre değişir.'
-    }
+      '/img/tünel.jpg',
+      '/img/tesisat.jpg',
+      '/img/kontrol.jpg'
+    ]
   },
   'banyo-mutfak': {
     id: 'banyo-mutfak',
     title: 'Banyo & Mutfak',
     icon: '🚿',
-    description: 'Banyo ve mutfak tesisatı, gider tıkanıklığı, lavabo montajı.',
-    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    description: 'Banyo ve mutfak tesisatı, gider tıkanıklığı açma Hizmeti',
+    heroImage: '/img/gider.jpg',
     features: [
       'Banyo tesisatı kurulumu',
       'Mutfak tesisatı düzenleme',
@@ -121,21 +112,17 @@ const servicesData = {
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '200₺',
-      description: 'Gider açma 150₺, lavabo montajı 200₺\'den başlayan fiyatlarla.'
-    }
+      '/img/gider.jpg',
+      '/img/tesisat.jpg',
+      '/img/kontrol.jpg'
+    ]
   },
   'acil-servis': {
     id: 'acil-servis',
     title: 'Acil Servis',
     icon: '🔧',
     description: '7/24 acil tesisat arıza giderme, su kesintisi ve acil müdahale.',
-    heroImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/img/acil.jpg',
     features: [
       '7/24 acil müdahale',
       'Su kesintisi çözümü',
@@ -163,21 +150,17 @@ const servicesData = {
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '150₺',
-      description: 'Çıkış ücreti 150₺. İş yapılırsa çıkış ücreti düşülür.'
-    }
+      '/img/acil.jpg',
+      '/img/tesisat.jpg',
+      '/img/kontrol.jpg'
+    ]
   },
   'yeni-tesisat': {
     id: 'yeni-tesisat',
     title: 'Yeni Tesisat',
     icon: '🏠',
     description: 'Yeni bina tesisat kurulumu, proje tasarımı ve uygulama.',
-    heroImage: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/img/sayfa1.jpg',
     features: [
       'Yeni bina tesisat projesi',
       'Tesisat sistem tasarımı',
@@ -205,21 +188,17 @@ const servicesData = {
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '15.000₺',
-      description: 'Proje büyüklüğüne göre. Metrekare başı 75₺\'den başlayan fiyatlar.'
-    }
+      '/img/sayfa1.jpg',
+      '/img/sayfa2.jpg',
+      '/img/tesisat.jpg'
+    ]
   },
   'tesisat-kontrolu': {
     id: 'tesisat-kontrolu',
     title: 'Tesisat Kontrolü',
     icon: '🔍',
     description: 'Detaylı tesisat kontrolü, raporlama ve önleyici bakım hizmetleri.',
-    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/img/kontrol.jpg',
     features: [
       'Detaylı tesisat kontrolü',
       'Arıza tespiti ve raporlama',
@@ -247,14 +226,10 @@ const servicesData = {
       ]
     },
     gallery: [
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-    ],
-    pricing: {
-      starting: '300₺',
-      description: 'Temel kontrol 300₺, detaylı analiz raporu 500₺.'
-    }
+      '/img/kontrol.jpg',
+      '/img/tesisat.jpg',
+      '/img/gider.jpg'
+    ]
   }
 };
 
@@ -283,26 +258,26 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
           }}
         />
         <div className="absolute inset-0 bg-black opacity-75"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-3 mb-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-6">
               <span className="text-4xl">{service.icon}</span>
-              <h1 className="text-4xl md:text-6xl font-bold">
-                <span className="text-blue-400">{service.title}</span>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                <span className="text-amber-400">{service.title}</span>
               </h1>
             </div>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed">
               {service.description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#iletisim-formu"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 text-center"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 text-center"
               >
                 📞 Hemen Teklif Al
               </a>
               <a
-                href="tel:+905325550123"
+                href="tel:+905327899182"
                 className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 text-center"
               >
                 📱 Acil Ara: 0532 555 01 23
@@ -331,28 +306,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 <ul className="space-y-3">
                   {service.detailedInfo.whyChoose.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                                          <div className="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
+                      <div className="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
                       <span className="text-gray-700">{item}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              <div className="bg-amber-50 p-6 rounded-xl border border-amber-100">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">💰</span>
-                  <h4 className="text-lg font-semibold text-gray-900">Fiyat Bilgisi</h4>
-                </div>
-                <div className="text-2xl font-bold text-amber-600 mb-2">
-                  {service.pricing.starting}*
-                </div>
-                <p className="text-gray-600 text-sm">
-                  {service.pricing.description}
-                </p>
               </div>
             </div>
 
@@ -377,43 +339,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
         </div>
       </section>
 
-   
-
-      {/* Gallery Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Çalışma Örneklerimiz
-            </h2>
-            <p className="text-lg text-gray-600">
-              {service.title} alanındaki başarılı projelerimizden örnekler.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {service.gallery.map((image, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src={image}
-                  alt={`${service.title} örnek ${index + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-semibold">{service.title} Projesi</p>
-                    <p className="text-sm opacity-90">Örnek Çalışma {index + 1}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-    
+ 
     </div>
   );
 }

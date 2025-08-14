@@ -31,7 +31,7 @@ async function addAdminUserToFirestore() {
       createdAt: new Date().toISOString(),
       lastLogin: null,
       profile: {
-        phone: '+90 532 555 0123',
+        phone: '+90 532 789 91 82 ',
         position: 'Site Yöneticisi',
         department: 'IT',
         avatar: null

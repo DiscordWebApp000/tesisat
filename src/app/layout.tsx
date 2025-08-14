@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Seka Altyapı - Profesyonel Tesisat Hizmetleri",
-  description: "İstanbul'da 20 yıllık deneyimle profesyonel tesisat hizmetleri. Su tesisatı, ısıtma sistemleri, banyo mutfak tesisatı ve acil servis.",
+  description: "İstanbul'da 20 yıllık deneyimle profesyonel  kanalizasyon açma , kanalizasyon görüntüleme ., banyo mutfak gideri açma işlemleri  ve acil servis.",
 };
 
 export default function RootLayout({
