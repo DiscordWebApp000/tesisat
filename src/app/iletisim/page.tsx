@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { RootState } from '../../store';
+import { sendContactMessage, fetchContactInfo, clearError } from '../../store/slices/contactSlice';
 
 interface ContactForm {
   name: string;
@@ -22,9 +23,15 @@ const ContactPage = () => {
     urgency: 'normal',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
+
+  const dispatch = useAppDispatch();
+  const { isSending, error } = useAppSelector((state: RootState) => state.contact) as { isSending: boolean; error: string | null };
+
+  useEffect(() => {
+    dispatch(fetchContactInfo());
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,25 +43,21 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
     setSuccess(false);
 
-    try {
-      // Form validasyonu
-      if (!formData.name || !formData.phone || !formData.email || !formData.serviceType || !formData.message) {
-        throw new Error('Lütfen tüm zorunlu alanları doldurun.');
-      }
+    // Form validasyonu
+    if (!formData.name || !formData.phone || !formData.email || !formData.serviceType || !formData.message) {
+      return;
+    }
 
-      // Firestore'a mesajı kaydet
-      await addDoc(collection(db, 'contact_messages'), {
+    try {
+      const messageData = {
         ...formData,
-        createdAt: serverTimestamp(),
-        status: 'new',
-        priority: formData.urgency === 'cok-acil' ? 'high' : formData.urgency === 'acil' ? 'medium' : 'low',
-        isRead: false,
-        isReplied: false
-      });
+        subject: `${formData.serviceType} - ${formData.urgency}`,
+        priority: formData.urgency === 'cok-acil' ? 'high' as const : formData.urgency === 'acil' ? 'medium' as const : 'low' as const,
+      };
+
+      await dispatch(sendContactMessage(messageData)).unwrap();
 
       // Formu temizle
       setFormData({
@@ -70,9 +73,7 @@ const ContactPage = () => {
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
       console.error('Mesaj gönderilirken hata:', err);
-      setError(err instanceof Error ? err.message : 'Mesaj gönderilirken bir hata oluştu.');
-    } finally {
-      setLoading(false);
+      // Error is handled by Redux
     }
   };
 
@@ -289,10 +290,10 @@ const ContactPage = () => {
 
                   <button 
                     type="submit"
-                    disabled={loading}
+                    disabled={isSending}
                     className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 rounded-lg font-medium text-lg transition-all duration-300 shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:shadow-none"
                   >
-                    {loading ? (
+                    {isSending ? (
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         Gönderiliyor...

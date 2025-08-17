@@ -11,8 +11,11 @@ import {
   FiPlus,
   FiRefreshCw,
   FiTrendingUp,
-  FiClock
+  FiClock,
+  FiUsers
 } from 'react-icons/fi';
+import CreateAdminModal from '@/components/CreateAdminModal';
+import { useAppSelector } from '@/store/hooks';
 
 interface DashboardStats {
   totalGalleryItems: number;
@@ -80,6 +83,9 @@ const AdminDashboard = () => {
   });
   const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showCreateAdminModal, setShowCreateAdminModal] = useState(false);
+
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     fetchDashboardData();
@@ -211,7 +217,7 @@ const AdminDashboard = () => {
       });
 
       // Sort activities by timestamp
-      activities.sort((a, b) => b.timestamp.toDate().getTime() - a.timestamp.toDate().getTime());
+      activities.sort((a, b) => getTimestamp(b.timestamp) - getTimestamp(a.timestamp));
       
       setRecentActivities(activities.slice(0, 5));
 
@@ -298,8 +304,42 @@ const AdminDashboard = () => {
     <div className="p-6 lg:p-8">
       {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600">Site içeriğinizi ve verilerinizi yönetin</p>
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+            <p className="text-gray-600">Site içeriğinizi ve verilerinizi yönetin</p>
+          </div>
+          
+          {/* Admin oluşturma butonu - sadece statik admin için göster */}
+          {user?.isStaticAdmin && (
+            <button
+              onClick={() => setShowCreateAdminModal(true)}
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors text-sm font-medium flex items-center gap-2"
+            >
+              <FiUsers className="w-4 h-4" />
+              Yeni Admin Oluştur
+            </button>
+          )}
+        </div>
+
+        {/* Admin Bilgi Kartı */}
+        {user && (
+          <div className="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-lg p-4">
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center">
+                <FiUsers className="w-6 h-6 text-white" />
+              </div>
+              <div className="ml-4">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Hoş geldiniz, {user.displayName || user.email}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {user.isStaticAdmin ? 'Statik Admin' : 'Veritabanı Admin'} • {user.email}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Stats Cards */}
@@ -459,6 +499,12 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Create Admin Modal */}
+      <CreateAdminModal 
+        isOpen={showCreateAdminModal} 
+        onClose={() => setShowCreateAdminModal(false)} 
+      />
     </div>
   );
 };

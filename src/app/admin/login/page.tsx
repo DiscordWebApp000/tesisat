@@ -1,54 +1,61 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { loginUser, loginWithStaticAdmin, clearError, checkDatabaseAdmins } from '@/store/slices/authSlice';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   
-  const { login, user } = useAuth();
+  const dispatch = useAppDispatch();
+  const { user, isLoading, error, isAuthenticated, hasDatabaseAdmins } = useAppSelector((state) => state.auth);
   const router = useRouter();
+
+  // Component mount'ta veritabanında admin var mı kontrol et
+  useEffect(() => {
+    dispatch(checkDatabaseAdmins());
+  }, [dispatch]);
+
+  // Clear error on component mount
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   // Redirect if already logged in
   useEffect(() => {
-    if (user) {
+    if (isAuthenticated && user) {
       router.push('/admin');
     }
-  }, [user, router]);
+  }, [isAuthenticated, user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setIsLoading(true);
 
     if (!email || !password) {
-      setError('Lütfen tüm alanları doldurun');
-      setIsLoading(false);
       return;
     }
 
     try {
-      const result = await login(email, password);
-      
-      if (result.success) {
-        if (rememberMe) {
-          localStorage.setItem('rememberMe', 'true');
-        } else {
-          localStorage.removeItem('rememberMe');
-        }
-        router.push('/admin');
+      // Veritabanında admin varsa normal giriş, yoksa statik admin girişi
+      if (hasDatabaseAdmins) {
+        await dispatch(loginUser({ email, password })).unwrap();
       } else {
-        setError(result.error || 'Giriş yapılırken bir hata oluştu');
+        await dispatch(loginWithStaticAdmin({ email, password })).unwrap();
       }
-    } catch {
-      setError('Beklenmeyen bir hata oluştu');
-    } finally {
-      setIsLoading(false);
+      
+      if (rememberMe) {
+        localStorage.setItem('rememberMe', 'true');
+      } else {
+        localStorage.removeItem('rememberMe');
+      }
+      
+      router.push('/admin');
+    } catch (err) {
+      // Error is handled by Redux
+      console.error('Login error:', err);
     }
   };
 
@@ -64,7 +71,27 @@ const AdminLogin = () => {
             </div>
           </div>
           <h2 className="text-center text-2xl font-bold text-gray-900 mb-1">Admin Girişi</h2>
-          <p className="text-center text-sm text-gray-600 mb-8">Seka Altyapı yönetim paneline erişim</p>
+          <p className="text-center text-sm text-gray-600 mb-8">
+            {hasDatabaseAdmins 
+              ? 'Veritabanı admin hesabı ile giriş yapın' 
+              : 'Statik admin hesabı ile giriş yapın'
+            }
+          </p>
+
+          {!hasDatabaseAdmins && (
+            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="flex items-center">
+                <svg className="h-5 w-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="text-sm text-blue-800">
+                  <p className="font-medium">Statik Admin Bilgileri:</p>
+                  <p>E-posta: admin@sekaaltyapi.com</p>
+                  <p>Şifre: admin123</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="relative">
@@ -122,12 +149,6 @@ const AdminLogin = () => {
                 {error}
               </div>
             )}
-
-            <div className="flex items-center justify-between">
-              
-
-             
-            </div>
 
             <button
               type="submit"

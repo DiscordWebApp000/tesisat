@@ -4,22 +4,22 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 
 const AdminAuth = ({ children }: { children: React.ReactNode }) => {
-  const { user, loading } = useAuth();
+  const { loading, isAuthenticated } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const isLoginPage = pathname === '/admin/login';
 
   useEffect(() => {
     if (!loading) {
-      if (!user && !isLoginPage) {
+      if (!isAuthenticated && !isLoginPage) {
         // Not authenticated and not on login page, redirect to login
         router.push('/admin/login');
-      } else if (user && isLoginPage) {
+      } else if (isAuthenticated && isLoginPage) {
         // Already authenticated and on login page, redirect to admin dashboard
         router.push('/admin');
       }
     }
-  }, [user, loading, isLoginPage, router]);
+  }, [isAuthenticated, loading, isLoginPage, router]);
 
   // Show loading spinner while checking authentication
   if (loading) {
@@ -34,7 +34,7 @@ const AdminAuth = ({ children }: { children: React.ReactNode }) => {
   }
 
   // Show children if authenticated or on login page
-  if (user || isLoginPage) {
+  if (isAuthenticated || isLoginPage) {
     return <>{children}</>;
   }
 

@@ -177,9 +177,21 @@ const AdminMessages = () => {
     }
   };
 
-  const formatDate = (timestamp: Timestamp) => {
+  const formatDate = (timestamp: Timestamp | Date | string | number | null | undefined) => {
     if (!timestamp) return 'Tarih yok';
-    const date = timestamp.toDate();
+    
+    let date: Date;
+    
+    if (typeof (timestamp as { toDate?: () => Date }).toDate === 'function') {
+      date = (timestamp as { toDate: () => Date }).toDate();
+    } else if (timestamp instanceof Date) {
+      date = timestamp;
+    } else if (typeof timestamp === 'string' || typeof timestamp === 'number') {
+      date = new Date(timestamp);
+    } else {
+      return 'Tarih yok';
+    }
+    
     return date.toLocaleDateString('tr-TR', {
       year: 'numeric',
       month: '2-digit',

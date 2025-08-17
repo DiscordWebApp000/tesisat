@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
+import ReduxProvider from "@/components/ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={inter.className}>
-        <RootLayoutContent>{children}</RootLayoutContent>
+        <ReduxProvider>
+          <RootLayoutContent>{children}</RootLayoutContent>
+        </ReduxProvider>
       </body>
     </html>
   );

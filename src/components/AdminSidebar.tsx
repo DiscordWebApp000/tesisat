@@ -11,13 +11,14 @@ import {
   FiSettings, 
   FiLogOut,
   FiX,
-  FiMenu
+  FiMenu,
+  FiUser
 } from 'react-icons/fi';
 
 const AdminSidebar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const router = useRouter();
 
   const navigation = [
@@ -78,7 +79,26 @@ const AdminSidebar = () => {
             </button>
           </div>
           
-          <nav className="mt-8 px-4">
+          {/* Admin Info - Mobile */}
+          {user && (
+            <div className="mx-4 mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                  <FiUser className="w-4 h-4 text-white" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">
+                    {user.displayName || user.email}
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {user.isStaticAdmin ? 'Statik Admin' : 'Veritabanı Admin'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <nav className="mt-6 px-4">
             <div className="space-y-2">
               {navigation.map((item) => {
                 const IconComponent = item.icon;
@@ -121,7 +141,26 @@ const AdminSidebar = () => {
             <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
           </div>
           
-          <nav className="mt-8 px-4">
+          {/* Admin Info - Desktop */}
+          {user && (
+            <div className="mx-4 mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <div className="flex items-center">
+                <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                  <FiUser className="w-4 h-4 text-white" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">
+                    {user.displayName || user.email}
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {user.isStaticAdmin ? 'Statik Admin' : 'Veritabanı Admin'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <nav className="mt-6 px-4">
             <div className="space-y-2">
               {navigation.map((item) => {
                 const IconComponent = item.icon;

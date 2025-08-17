@@ -6,14 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "create-admin": "node scripts/simple-create-user.js",
-    "firebase-setup": "node scripts/firebase-setup-guide.js",
-    "create-admin-web": "echo 'http://localhost:3000/create-admin.html adresine gidin'",
-    "add-admin-only": "node scripts/add-admin-only.js",
-    "setup-gallery": "node scripts/setup-gallery-categories.js"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "bcryptjs": "^3.0.2",
     "firebase": "^12.1.0",
     "firebase-admin": "^13.4.0",
@@ -21,7 +17,8 @@
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
